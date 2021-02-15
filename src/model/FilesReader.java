@@ -33,39 +33,43 @@ public class FilesReader {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             while ((line1 = br.readLine()) != null) {
+                String [] [] matriz = new String [0] [0];
                 String[] values = line1.split(";");
               //  for(String i: values) {
                 int a=0;
                     id.add(values[0]);
                     g.insertVertex(values[0]);
 
-                    for(String i:values) {
+
+                     if(g.vertices().size()==50){
+                    for(String i:id) {
                         a += 1;
 
-                  //      System.out.println(a);
-                       //
-                        if(a >= values.length){
-                            a=0;
+                            // System.out.println(i);
+                        //
+                        if (a >= values.length) {
+                            a = 0;
                         }
 
                         if (a >= 2) {
-                            if (line1.length()==50) {
-                               // System.out.println(values[0] + " :   " + values[a]);
-                         // System.out.print(g.vertices().size());
-                             //  if (g.vertices().size()==50){
-                                  // g.insertEdge(values[0],values[a],i);
-                              //  System.out.println;
-                               }
-                               // relacao.add(values[a]);
-                            //}
+                            // if (line1.contains("50")) {
+                          //  System.out.println(values[0] + " :   " + values[a]);
+                           // matriz
+                            //System.out.print(i);
+                            //  if (g.vertices().size()==50){
+                             g.insertEdge(i,values[a],i);
+                            //  System.out.println;
                         }
-
+                        // relacao.add(values[a]);
+                        //}
+                        // }
+                    }
 
                     }
 
 
 
-                        }
+                       }
             //System.out.print(g.vertices());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
