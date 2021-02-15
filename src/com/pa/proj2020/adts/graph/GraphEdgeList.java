@@ -134,15 +134,17 @@ public class GraphEdgeList<V, E> implements Graph<V, E> {
     }
 
     @Override
-    public synchronized Vertex<V> insertVertex(V vElement) throws InvalidVertexException {
+    public  Vertex<V> insertVertex(V vElement) throws InvalidVertexException {
+
         if (existsVertexWith(vElement)) {
             throw new InvalidVertexException("There's already a vertex with this element.");
         }
 
+
         MyVertex newVertex = new MyVertex(vElement);
-
+        //System.out.println(newVertex+"A");
         vertices.put(vElement, newVertex);
-
+      //  System.out.println(newVertex);
         return newVertex;
     }
 
@@ -169,20 +171,21 @@ public class GraphEdgeList<V, E> implements Graph<V, E> {
     public synchronized Edge<E, V> insertEdge(V vElement1, V vElement2, E edgeElement) 
             throws InvalidVertexException, InvalidEdgeException {
         
-        if (existsEdgeWith(edgeElement)) {
+       /* if (existsEdgeWith(edgeElement)) {
             throw new InvalidEdgeException("There's already an edge with this element.");
-        }
+        }*/
 
-        if (!existsVertexWith(vElement1)) {
+       /* if (!existsVertexWith(vElement1)) {
             throw new InvalidVertexException("No vertex contains " + vElement1);
-        }
+        }*/
         if (!existsVertexWith(vElement2)) {
             throw new InvalidVertexException("No vertex contains " + vElement2);
         }
 
         MyVertex outVertex = vertexOf(vElement1);
         MyVertex inVertex = vertexOf(vElement2);
-
+        System.out.println(outVertex+"OUT V1");
+        System.out.println(inVertex+"IN V2");
         MyEdge newEdge = new MyEdge(edgeElement, outVertex, inVertex);
 
         edges.put(edgeElement, newEdge);

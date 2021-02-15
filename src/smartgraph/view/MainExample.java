@@ -26,6 +26,8 @@ package smartgraph.view;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import model.SocialNetwork;
 import smartgraph.view.graphview.SmartGraphPanel;
 import com.pa.proj2020.adts.graph.Vertex;
 import com.pa.proj2020.adts.graph.Graph;
@@ -49,10 +51,13 @@ public class MainExample extends Application {
 
     @Override
     public void start(Stage ignored) {
-
-        Graph<String, String> g = build_sample_digraph();
+        //Graph<String, String> g = build_sample_digraph();
         //Graph<String, String> g = build_flower_graph();
-        System.out.println(g);
+        SocialNetwork sn = new SocialNetwork();
+        sn.main();
+
+       /* Graph<String, String> g = new GraphEdgeList<>();
+       System.out.println(g.numVertices()+"ola");
         
         SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
         //SmartPlacementStrategy strategy = new SmartRandomPlacementStrategy();
@@ -62,7 +67,7 @@ public class MainExample extends Application {
         After creating, you can change the styling of some element.
         This can be done at any time afterwards.
         */
-        if (g.numVertices() > 0) {
+      /*  if (g.numVertices() > 0) {
             graphView.getStylableVertex("A").setStyle("-fx-fill: gold; -fx-stroke: brown;");
         }
 
@@ -71,7 +76,7 @@ public class MainExample extends Application {
         Use SmartGraphDemoContainer if you want zoom capabilities and automatic layout toggling
         */
         //Scene scene = new Scene(graphView, 1024, 768);
-        Scene scene = new Scene(new SmartGraphDemoContainer(graphView), 1024, 768);
+      /*  Scene scene = new Scene(new SmartGraphDemoContainer(graphView), 1024, 768);
 
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setTitle("JavaFX SmartGraph Visualization");
@@ -84,12 +89,12 @@ public class MainExample extends Application {
         IMPORTANT: Must call init() after scene is displayed so we can have width and height values
         to initially place the vertices according to the placement strategy
         */
-        graphView.init();
+     /*   graphView.init();
 
         /*
         Bellow you can see how to attach actions for when vertices and edges are double clicked
          */
-        graphView.setVertexDoubleClickAction(graphVertex -> {
+    /*    graphView.setVertexDoubleClickAction(graphVertex -> {
             System.out.println("Vertex contains element: " + graphVertex.getUnderlyingVertex().element());
 
             //toggle different styling
@@ -98,7 +103,7 @@ public class MainExample extends Application {
                    css class. Otherwise, it has priority. Test and uncomment. */
                 //graphVertex.setStyle(null); 
                 
-                graphVertex.addStyleClass("myVertex");
+       /*         graphVertex.addStyleClass("myVertex");
             }            
             
             //want fun? uncomment below with automatic layout
@@ -137,40 +142,21 @@ public class MainExample extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+      //  SocialNetwork sn = new SocialNetwork();
+       //sn.main();
+
         launch(args);
     }
 
     private Graph<String, String> build_sample_digraph() {
 
         Graph<String, String> g = new GraphEdgeList<>();
-
-        g.insertVertex("A");
-        g.insertVertex("B");
-        g.insertVertex("C");
-        g.insertVertex("D");
-        g.insertVertex("E");
-        g.insertVertex("F");
-
-        g.insertEdge("A", "B", "AB");
-        g.insertEdge("B", "A", "AB2");
-        g.insertEdge("A", "C", "AC");
-        g.insertEdge("A", "D", "AD");
-        g.insertEdge("B", "C", "BC");
-        g.insertEdge("C", "D", "CD");
-        g.insertEdge("B", "E", "BE");
-        g.insertEdge("F", "D", "DF");
-        g.insertEdge("F", "D", "DF2");
-
-        //yep, its a loop!
-        g.insertEdge("A", "A", "Loop");
-
-        return g;
+             return g;
     }
 
     private Graph<String, String> build_flower_graph() {
 
         Graph<String, String> g = new GraphEdgeList<>();
-
         g.insertVertex("A");
         g.insertVertex("B");
         g.insertVertex("C");
